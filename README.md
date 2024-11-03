@@ -19,7 +19,7 @@ make dev
 
 - Docker:
 ```bash
-cp env.example .env
+cp .env.example .env
 ```
 - Docker build and run:
 ```bash

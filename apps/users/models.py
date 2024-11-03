@@ -8,8 +8,16 @@ class CustomUser(AbstractUser):
         auto_now_add=True
     )
 
+    class Meta:
+        indexes = [
+            models.Index(
+                fields=['email'],
+                name='customuser_email_idx'
+            ),
+        ]
+
     def __str__(self):
-        return self.get_full_name()
+        return self.username
 
     def __repr__(self):
         return f'{self.username}'

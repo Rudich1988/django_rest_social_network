@@ -19,3 +19,18 @@ class Post(models.Model):
         on_delete=models.SET_NULL,
         null=True
     )
+
+    class Meta:
+        indexes = [
+            models.Index(
+                fields=['category'],
+                name='posts_category_idx'
+            ),
+            models.Index(
+                fields=['user'],
+                name='posts_user_idx'
+            ),
+        ]
+
+    def __str__(self):
+        return f'{self.id}: {self.name}'
