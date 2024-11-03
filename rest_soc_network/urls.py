@@ -8,12 +8,14 @@ from rest_soc_network import views
 from apps.users.views import CustomUserViewSet
 from apps.categories.views import CategoryViewSet
 from apps.posts.views import PostViewSet
+from apps.likes.views import LikeViewSet
 
 
 router = routers.SimpleRouter()
 router.register(r'users', CustomUserViewSet)
 router.register(r'posts', PostViewSet)
 router.register(r'categories', CategoryViewSet)
+router.register(r'likes', LikeViewSet)
 
 
 urlpatterns = [

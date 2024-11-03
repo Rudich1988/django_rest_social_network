@@ -6,6 +6,9 @@ from apps.categories.models import Category
 class Post(models.Model):
     name = models.CharField(max_length=128)
     text = models.TextField()
+    likes_count = models.IntegerField(
+        default=0
+    )
     user = models.ForeignKey(
         CustomUser,
         on_delete=models.CASCADE,

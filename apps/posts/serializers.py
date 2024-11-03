@@ -10,17 +10,30 @@ class PostSerializer(serializers.ModelSerializer):
     category = PrimaryKeyRelatedField(
         queryset=Category.objects.all()
     )
-    user = serializers.PrimaryKeyRelatedField(
+    user = serializers.CharField(
+        source='user.username',
+        read_only=True
+    )
+    likes_count = serializers.IntegerField(
         read_only=True
     )
 
     class Meta:
         model = Post
-        fields = ['id', 'name', 'text', 'category', 'user']
+        fields = [
+            'id',
+            'name',
+            'text',
+            'category',
+            'user',
+            'likes_count'
+        ]
 
     def to_representation(self, instance):
-        representation = super().to_representation(instance)
+        representation = super().to_representation(
+            instance
+        )
         representation['category'] = CategorySerializer(
             instance.category
-        ).data
+        ).data['name']
         return representation
